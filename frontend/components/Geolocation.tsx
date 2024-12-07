@@ -8,7 +8,7 @@ import {
   import { useEffect, useRef, useState } from "react";
   
   const mapContainerStyle = {
-    height: "450px", 
+    height: "650px", 
     width: "100%",
   };
   
@@ -91,6 +91,7 @@ import {
           {
             mapVisible && (
           <GoogleMap
+            mapContainerClassName="rounded-lg shadow-lg"
             mapContainerStyle={mapContainerStyle}
             center={center}
             zoom={7}
