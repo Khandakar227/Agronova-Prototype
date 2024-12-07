@@ -23,9 +23,7 @@ import {
     mapVisible?:boolean;
   }
   
-  const GoogleMapComponent: React.FC<GoogleMapComponentProps> = ({onLocationSelect, mapVisible}) => {
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-  
+  const GMap: React.FC<GoogleMapComponentProps> = ({onLocationSelect, mapVisible}) => {  
     const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
     const [selectedPosition, setSelectedPosition] = useState<number[]>([]);
     const [address, setAddress] = useState("");
@@ -36,7 +34,7 @@ import {
       if (autocompleteRef.current) {
         autocompleteRef.current.addListener("place_changed", () => {
           const place = autocompleteRef.current?.getPlace() || null;
-  
+          console.log(place)
           onPlaceChanged(place);
         });
       }
@@ -67,20 +65,8 @@ import {
       setSelectedPosition([lng, lat]);
     };
   
-    function addAddress() {
-      // onLocationSelect({...selectedPosition, name:address});
-      onLocationSelect({location:selectedPosition, name:address});
-      setAddress("");
-      setSelectedPosition([]);
-    }
-    if (!apiKey) {
-      console.error("Google Maps API key is not defined.");
-      return <div>Error: Google Maps API key is not available.</div>;
-    }
-  
     return (
       <>
-        <LoadScript googleMapsApiKey={apiKey} libraries={["places"]}>
           <p className="text-sm pt-4">  আপনার এলাকা খুঁজুন বা মানচিত্রে চিহ্নিত করুন</p>
          
           <Autocomplete
@@ -96,9 +82,6 @@ import {
                 placeholder="শহর, জেলা খুঁজুন..."
                 className="shadow border w-full rounded-md outline-none px-4 py-2 my-3"
               />
-              {
-                address && selectedPosition?.length && (<button onClick={addAddress} className="px-4 py-1 bg-primary rounded" type="button"> যোগ করুন</button>)
-              }
               
             </div>
           </Autocomplete>
@@ -107,17 +90,34 @@ import {
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             center={center}
-            zoom={8}
+            zoom={7}
             onClick={handleMapClick}
+            options={{
+              minZoom: 7,
+              maxZoom: 8,
+            }}
           >
             {selectedPosition?.length && <Marker position={{lng: selectedPosition[0], lat: selectedPosition[1]}} />}
           </GoogleMap>
             )
           }
-        </LoadScript>
       </>
     );
   };
   
+  const GoogleMapComponent: React.FC<GoogleMapComponentProps> = (props) => {
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string;
+    
+    if (!apiKey) {
+      console.error("Google Maps API key is not defined.");
+      return <div>Error: Google Maps API key is not available.</div>;
+    }
+    
+    return (
+      <LoadScript googleMapsApiKey={apiKey} libraries={["places"]}>
+        <GMap {...props} />
+      </LoadScript>
+    );
+  };
   export default GoogleMapComponent;
   
