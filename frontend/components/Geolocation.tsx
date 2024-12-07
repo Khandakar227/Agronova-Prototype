@@ -60,9 +60,12 @@ import {
       
       const geocoder = new google.maps.Geocoder();
       const response = await geocoder.geocode({ location: { lat, lng } });
-      
-      setAddress(response.results[0]?.formatted_address);
-      setSelectedPosition([lng, lat]);
+      const countryInfo = response.results[0].address_components.find((c) => c.types.includes("country"));
+      if(countryInfo && countryInfo.long_name == "Bangladesh") {
+        setAddress(response.results[0]?.formatted_address);
+        setSelectedPosition([lng, lat]);
+        onLocationSelect({location: [lng, lat], name: response.results[0]?.formatted_address || ""});
+      }
     };
   
     return (
@@ -112,7 +115,7 @@ import {
       console.error("Google Maps API key is not defined.");
       return <div>Error: Google Maps API key is not available.</div>;
     }
-    
+
     return (
       <LoadScript googleMapsApiKey={apiKey} libraries={["places"]}>
         <GMap {...props} />

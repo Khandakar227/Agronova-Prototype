@@ -8,6 +8,10 @@ const GeolocationPage = ()=> {
     name: string;
   } | null>(null);
 
+  useEffect(() => {
+    console.log(selectedLocation)
+  }, [selectedLocation])
+
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Page Header */}
