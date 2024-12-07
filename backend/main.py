@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 import numpy as np
 import pickle
 
@@ -21,6 +22,13 @@ except pickle.UnpicklingError:
 # FastAPI app instance
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,  # Allow cookies and credentials
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all HTTP headers
+)
 # Define input schema
 class CropPredictionInput(BaseModel):
     # medium (50-150 cm), deep (>>150 cm), shallow (20-50 cm)
