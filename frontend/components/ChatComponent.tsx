@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Send } from "lucide-react";
+import MarkdownPreview from "@uiw/react-markdown-preview";
 
 const ChatComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,31 +23,37 @@ const ChatComponent = () => {
 
     try {
       // Call the backend API
-      const response = await fetch("/api/crop-details-generate", {
+      const response = await fetch("/api/chatbot", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ crop: input }), // Sending the crop name as input
+        body: JSON.stringify({ question: input }), // Sending the crop name as input
       });
 
       const data = await response.json();
 
-      if (response.ok && data.result) {
-        const botReply = `
-          <p><strong>নাম:</strong> ${data.result.name}</p>
-          <p><strong>বিবরণ:</strong> ${data.result.description}</p>
-        `;
-        setMessages([...newMessages.slice(0, -1), { user: input, bot: botReply }]);
+      if (response.ok && data.response) {
+        const botReply = data.response;
+        setMessages([
+          ...newMessages.slice(0, -1),
+          { user: input, bot: botReply },
+        ]);
       } else {
         setMessages([
           ...newMessages.slice(0, -1),
-          { user: input, bot: "দুঃখিত, সিস্টেমের সমস্যা হয়েছে। পরে আবার চেষ্টা করুন।" },
+          {
+            user: input,
+            bot: "দুঃখিত, সিস্টেমের সমস্যা হয়েছে। পরে আবার চেষ্টা করুন।",
+          },
         ]);
       }
     } catch (error) {
       console.error("Error fetching response:", error);
       setMessages([
         ...newMessages.slice(0, -1),
-        { user: input, bot: "দুঃখিত, সার্ভারের সাথে সংযোগ স্থাপন করতে পারছি না।" },
+        {
+          user: input,
+          bot: "দুঃখিত, সার্ভারের সাথে সংযোগ স্থাপন করতে পারছি না।",
+        },
       ]);
     } finally {
       setLoading(false);
@@ -54,24 +61,12 @@ const ChatComponent = () => {
     }
   };
 
-  const formatBotReply = (botText: string) => {
-   
-    let formattedText = botText
-      .replace(/<p>/g, "<p class='text-sm text-gray-700 whitespace-pre-wrap'>")
-      .replace(/<br>/g, "<br />");
-
-   
-    formattedText = formattedText.replace(/<strong>(.*?)<\/strong>/g, "<strong class='text-blue-600'>$1</strong>");
-    formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, "<strong class='text-blue-600'>$1</strong>");
-
-    return formattedText;
-  };
-
+ 
   return (
     <>
       {/* Chat Toggle Button */}
       <div
-        className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-green-500 flex items-center justify-center cursor-pointer shadow-lg z-50"
+        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-green-500 border-green-400 border flex items-center justify-center cursor-pointer shadow-lg z-50"
         onClick={toggleChat}
       >
         <img
@@ -86,29 +81,46 @@ const ChatComponent = () => {
         <div className="fixed bottom-20 resize-y max-h-[80vh] right-6 bg-white shadow-lg rounded-lg w-80 z-50">
           {/* Header */}
           <div className="p-4 bg-green-600 text-white rounded-t-lg">
-            <h3 className="text-lg font-bold">KrishiDishari</h3>
-            <p className="text-xs">আমি আপনার সহকারী</p>
+            <h3 className="text-lg font-bold">কৃষিমিত্র</h3>
+            <p className="text-xs">
+              স্বাগতম! আমি কৃষিমিত্র, আপনার কৃষি সহায়ক চ্যাটবট।
+            </p>
           </div>
 
           {/* Messages Section */}
-          <div className="h-60 overflow-y-auto p-4">
+          <div className="h-72 overflow-y-auto p-4">
+            <div className="text-xs text-gray-500">
+              <p>🌾আমি কীভাবে আপনাকে সাহায্য করতে পারি?</p>
+              <br />
+              <ul className="list-inside list-disc">
+                <li>আপনার জমির জন্য সেরা ফসল কী?</li>
+                <li>ফসলের রোগ নির্ণয় ও প্রতিকার।</li>
+                <li>সার, বীজ, এবং কৃষি উপকরণ ব্যবহারের সঠিক পদ্ধতি।</li>
+                <li>আবহাওয়া ও জলবায়ু তথ্য।</li>
+                <li>সর্বাধুনিক কৃষি প্রযুক্তি ও টিপস।</li>
+                <li>
+                  আমাকে আপনার প্রশ্ন করুন, আর আমি আপনাকে সঠিক ও প্রাসঙ্গিক উত্তর
+                  দিতে চেষ্টা করব। কৃষির উন্নয়নই আমাদের লক্ষ্য! 🌱"
+                </li>
+              </ul>
+            <br />
+              <p>যেকোনো সাহায্যের জন্য কথা বলুন কৃষিমিত্রের সাথে। 😊</p>
+            </div>
             {messages.map((msg, idx) => (
               <div key={idx} className="mb-2">
-                <div className="text-sm font-semibold text-gray-800">
                   {/* Display user message */}
-                  <span className="text-green-500">আপনি:</span> {msg.user}
+                  <p className="text-orange-600 text-end font-semibold text-sm pt-4">আপনি:</p>
+                  <div className="p-1 bg-orange-50 rounded shadow ml-4 text-sm">{msg.user}</div>
+                  {/* Display bot message */}
+                <p className="text-green-500 text-sm font-semibold pt-4">কৃষিমিত্র:</p>
+                <div data-color-mode="light" className="p-1 bg-green-50 rounded shadow mr-4">
+                  <MarkdownPreview style={{backgroundColor: "transparent", fontSize: "12px"}} source={msg.bot} />
                 </div>
-                <span className="text-blue-500">KrishiDishari:</span>
-                <div
-                  className="text-sm text-gray-700 whitespace-pre-wrap"
-                  dangerouslySetInnerHTML={{ __html: formatBotReply(msg.bot) }}
-                />
-              
               </div>
             ))}
             {loading && (
               <div className="text-sm text-gray-700">
-                KrishiDishari: লেখার জন্য অপেক্ষা করুন...
+                কৃষিমিত্র: লেখার জন্য অপেক্ষা করুন...
               </div>
             )}
           </div>
@@ -125,7 +137,9 @@ const ChatComponent = () => {
             />
             <button
               onClick={handleSend}
-              className={`bg-green-500 text-white px-4 py-1 rounded ml-2 ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+              className={`bg-green-500 text-white px-4 py-1 rounded ml-2 ${
+                loading ? "opacity-50 cursor-not-allowed" : ""
+              }`}
               disabled={loading}
             >
               <Send className="w-5 h-5" />
