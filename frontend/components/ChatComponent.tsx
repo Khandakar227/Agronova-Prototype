@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Send } from "lucide-react";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 
@@ -8,6 +8,15 @@ const ChatComponent = () => {
   const [messages, setMessages] = useState<{ user: string; bot: string }[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    // Listen for custom event
+    document.addEventListener("chatbot", (e: CustomEventInit) => {
+      console.log("Opening chatbot...");
+      setIsOpen(e.detail?.open || false);
+    });
+    
+  }, [])
 
   const toggleChat = () => {
     setIsOpen(!isOpen);

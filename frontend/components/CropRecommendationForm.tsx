@@ -58,6 +58,7 @@ const CropRrecommendationForm = ({ setCrop, setCropDetail }:FormProps) => {
         const data = await res.json();
         console.log(data);
         setCrop(data.predicted_crop);
+
         const cropDetails = await getCropDetails(data.predicted_crop);
         setCropDetail(cropDetails.result);
     } catch (error) {

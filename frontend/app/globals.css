@@ -1,4 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Mina:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    html, body {
+        scroll-behavior: smooth;
+    }
+    body {
+        @apply font-mina;
+    }
+}

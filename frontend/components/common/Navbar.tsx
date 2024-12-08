@@ -12,8 +12,7 @@ export default function Navbar() {
             <div>
                 <ul className="flex gap-6 pr-4 text-sm">
                     <li className="font-semibold"><Link href={"/"}>হোম</Link></li>
-                    <li className="font-semibold"><Link href={"/crop-recommendation"}>ফসলের সুপারিশ</Link></li>
-                    <li className="font-semibold"><Link href={"/geolocation-wise-crop"}>জিওলোকেশন ভিত্তিক সেবা</Link></li>
+                    <li className="font-semibold"><Link href={"#features"}>আমাদের সেবা</Link></li>
                 </ul>
             </div>
         </div>

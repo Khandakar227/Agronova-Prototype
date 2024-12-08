@@ -22,6 +22,6 @@ export const POST = async (request: Request) => {
 
     } catch (error) {
         console.error(error);
-        return NextResponse.json({ error: 'Failed to Upload the images', errorName: (error as Error).name  });
+        return NextResponse.json({ error: 'Failed to Upload', errorName: (error as Error).name  });
     }
 }
