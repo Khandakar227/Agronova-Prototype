@@ -6,6 +6,9 @@ import pickle
 
 crop_optimal_model_path = 'weights/Crop Optimal Requirements/dtc_model.pkl'
 crop_suitability_model_path = 'weights/Crop Suitability Geospatial/models_crops_mappings.pkl'
+fertilizer_recommendation_model_path = 'weights/Recommend Fertilizer/ferilizer_classifier.pkl'
+fertilizers_crops_soil_path = 'weights/Recommend Fertilizer/fertilizers_crops_soil.pkl'
+
 # Load the model and label encoder
 try:
     with open(crop_optimal_model_path, 'rb') as model_file:
@@ -13,6 +16,12 @@ try:
 
     with open(crop_suitability_model_path, 'rb') as model_file:
         crop_suitability_model, crops, suitability_mapping = pickle.load(model_file)
+
+    with open(fertilizer_recommendation_model_path, 'rb') as model_file:
+        fertilizer_recommendation_model = pickle.load(model_file)
+    
+    with open(fertilizers_crops_soil_path, 'rb') as model_file:
+        fertilizers, fertlizer_crops_encoder, fertlizer_soil_encoder = pickle.load(model_file)
     
 except FileNotFoundError:
     raise RuntimeError("Model file 'dtc_model.pkl' not found. Please ensure the file is present.")
@@ -121,4 +130,27 @@ async def predict_suitability(coordinates:GeospatialCoordinates):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error occurred during prediction: {str(e)}")
     
+
+class FertilizerRecommendationInput(BaseModel):
+    crop: str
+    N: float
+    P: float
+    K: float
+    moisture: float
+    temperature: float
+    humidity: float
+    soilType: str
+
+@app.post("/recommend-fertilizer")
+async def recommend_fertilizer(input_data: FertilizerRecommendationInput):
+    try:
+        soil = fertlizer_soil_encoder.transform([input_data.soilType])[0]
+        crop = fertlizer_crops_encoder.transform([input_data.crop])[0]
+
+        input_sample = [int(input_data.temperature), int(input_data.humidity), int(input_data.moisture), int(soil), int(crop), int(input_data.N), int(input_data.K), int(input_data.P)]
+        result = fertilizers.classes_[fertilizer_recommendation_model.predict([input_sample])]
+        
+        return {"fertilizer": result[0]}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error occurred during recommendation: {str(e)}")
 

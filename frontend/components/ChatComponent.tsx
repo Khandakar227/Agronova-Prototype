@@ -78,7 +78,7 @@ const ChatComponent = () => {
 
       {/* Chat Box */}
       {isOpen && (
-        <div className="fixed bottom-20 resize-y max-h-[80vh] right-6 bg-white shadow-lg rounded-lg w-80 z-50">
+        <div className="fixed bottom-20 resize-y max-h-[80vh] right-6 bg-white shadow-lg rounded-lg md:w-96 w-64 z-50">
           {/* Header */}
           <div className="p-4 bg-green-600 text-white rounded-t-lg">
             <h3 className="text-lg font-bold">কৃষিমিত্র</h3>
