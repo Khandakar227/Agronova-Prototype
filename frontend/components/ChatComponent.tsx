@@ -70,7 +70,7 @@ const ChatComponent = () => {
         onClick={toggleChat}
       >
         <img
-          src="/image.png"
+          src="/assets/krishimitro.jpg"
           alt="Chat Icon"
           className="w-full h-full rounded-full object-cover"
         />

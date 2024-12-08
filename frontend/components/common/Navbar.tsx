@@ -14,7 +14,6 @@ export default function Navbar() {
                     <li className="font-semibold"><Link href={"/"}>হোম</Link></li>
                     <li className="font-semibold"><Link href={"/crop-recommendation"}>ফসলের সুপারিশ</Link></li>
                     <li className="font-semibold"><Link href={"/geolocation-wise-crop"}>জিওলোকেশন ভিত্তিক সেবা</Link></li>
-                    <li className="font-semibold"><Link href={"/"}>কৃষি সহায়ক</Link></li>
                 </ul>
             </div>
         </div>
