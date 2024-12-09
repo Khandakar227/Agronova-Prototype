@@ -13,9 +13,9 @@ export const POST = async (request: Request) => {
 
 ফসলের নাম: ${crop}
 সারের নাম: ${fertilizer}
-নাইট্রোজেন (N) মান: ${N}
-ফসফরাস (P) মান:  ${P}
-পটাসিয়াম (K) মান: ${K}
+মাটিতে নাইট্রোজেন (N) মান: ${N} kg/hectare
+মাটিতে ফসফরাস (P) মান:  ${P} kg/hectare
+মাটিতে পটাসিয়াম (K) মান: ${K} kg/hectare
 
 প্রয়োজনীয় আউটপুট
 

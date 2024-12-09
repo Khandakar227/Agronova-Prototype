@@ -91,7 +91,6 @@ async def predict_crop(input_data: CropPredictionInput):
 
         # Predict the crop
         prediction = crop_optimal_classifier.predict([sample])[0]
-
         # Return the predicted crop
         return {"predicted_crop": prediction}
 
