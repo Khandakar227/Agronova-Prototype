@@ -31,17 +31,6 @@ export default function Navbar() {
                     <li className="font-semibold"><Link href={"/"}>হোম</Link></li>
                     <li className="font-semibold"><Link href={"/crop-recommendation"}>ফসলের সুপারিশ</Link></li>
                     <li className="font-semibold"><Link href={"/geolocation-wise-crop"}>জিওলোকেশন ভিত্তিক সেবা</Link></li>
-                    {/* Dark Mode Toggle Button */}
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 dark:text-gray-200 text-gray-800 transition"
-          >
-            {theme === "light" ? (
-              <Moon className="w-5 h-5" /> // Lucide Moon Icon
-            ) : (
-              <Sun className="w-5 h-5" /> // Lucide Sun Icon
-            )}
-          </button>
                 </ul>
             </div>
         </div>

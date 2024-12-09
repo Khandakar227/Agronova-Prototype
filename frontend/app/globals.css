@@ -1,12 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Mina:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html {
-    @apply transition-colors duration-300;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-body {
-    @apply bg-green-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200;
-}

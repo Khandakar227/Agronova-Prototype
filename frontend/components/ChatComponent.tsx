@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Send } from "lucide-react";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 
@@ -8,6 +8,15 @@ const ChatComponent = () => {
   const [messages, setMessages] = useState<{ user: string; bot: string }[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    // Listen for custom event
+    document.addEventListener("chatbot", (e: CustomEventInit) => {
+      console.log("Opening chatbot...");
+      setIsOpen(e.detail?.open || false);
+    });
+    
+  }, [])
 
   const toggleChat = () => {
     setIsOpen(!isOpen);
@@ -78,7 +87,7 @@ const ChatComponent = () => {
 
       {/* Chat Box */}
       {isOpen && (
-        <div className="fixed bottom-20 resize-y max-h-[80vh] right-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg w-80 z-50">
+        <div className="fixed bottom-20 resize-y max-h-[80vh] right-6 bg-white shadow-lg rounded-lg w-80 z-50">
           {/* Header */}
           <div className="p-4 bg-green-600 dark:bg-green-700 text-white rounded-t-lg">
             <h3 className="text-lg font-bold">কৃষিমিত্র</h3>

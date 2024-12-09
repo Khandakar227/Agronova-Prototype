@@ -1,0 +1,27 @@
+crops_fertilizer_system = {
+"Barley":0,
+"Cotton":1,
+"Ground Nuts":2,
+"Maize":3,
+"Millets":4,
+"Oil seeds":5,
+"Paddy":6,
+"Pulses":7,
+"Sugarcane":8,
+"Tobacco":9,
+"Wheat":10,
+"coffee":11,
+"kidneybeans":12,
+"orange":13,
+"pomegranate":14,
+"rice":15,
+"watermelon":16
+}
+
+soil_fertilizer_system = {
+"Black":0,
+"Clayey":1,
+"Loamy":2,
+"Red":3,
+"Sandy":4
+}
