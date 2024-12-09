@@ -6,6 +6,7 @@ import {
     Marker,
   } from "@react-google-maps/api";
   import { useEffect, useRef, useState } from "react";
+  import { useTheme } from "next-themes";
   
   const mapContainerStyle = {
     height: "650px", 
@@ -16,6 +17,18 @@ import {
     lat: 23.685,
     lng: 90.3563,
   };
+
+  const darkMapStyles = [
+    { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+    { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+    { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+    { featureType: "administrative.locality", elementType: "labels.text.fill", stylers: [{ color: "#d59563" }] },
+    { featureType: "poi", elementType: "labels.text.fill", stylers: [{ color: "#d59563" }] },
+    { featureType: "road", elementType: "geometry", stylers: [{ color: "#38414e" }] },
+    { featureType: "road.highway", elementType: "geometry", stylers: [{ color: "#746855" }] },
+    { featureType: "water", elementType: "geometry", stylers: [{ color: "#17263c" }] },
+  ];
+  
   
   interface GoogleMapComponentProps {
     // onLocationSelect: (data:{lat?: number, lng?: number, name:string}) => void;
@@ -28,6 +41,8 @@ import {
     const [selectedPosition, setSelectedPosition] = useState<number[]>([]);
     const [address, setAddress] = useState("");
     const inputRef = useRef({} as HTMLInputElement);
+    const { theme } = useTheme(); // Get current theme
+    const isDarkMode = theme === "dark";
   
     useEffect(() => {
       console.log(autocompleteRef);
@@ -70,7 +85,7 @@ import {
   
     return (
       <>
-          <p className="text-sm pt-4">  আপনার এলাকা খুঁজুন বা মানচিত্রে চিহ্নিত করুন</p>
+          <p className="text-sm pt-4">  আপনার এলাকা খুঁজুন বা মানচিত্রে চিহ্নিত করুন....</p>
          
           <Autocomplete
             onLoad={(autocomplete) => (autocompleteRef.current = autocomplete)}
@@ -78,20 +93,20 @@ import {
             fields={["geometry", "name", "formatted_address"]}
           >
             <div className="flex justify-center items-center gap-4">
-              <input
-                type="search"
-                id="place"
-                ref={inputRef}
-                placeholder="শহর, জেলা খুঁজুন..."
-                className="shadow border w-full rounded-md outline-none px-4 py-2 my-3"
-              />
+            <input
+  type="search"
+  id="place"
+  ref={inputRef}
+  placeholder="শহর, জেলা খুঁজুন..."
+  className="shadow border w-full rounded-md outline-none px-4 py-2 my-3 bg-white  text-gray-900  dark:border-gray-600"
+/>
               
             </div>
           </Autocomplete>
           {
             mapVisible && (
           <GoogleMap
-            mapContainerClassName="rounded-lg shadow-lg"
+            mapContainerClassName="rounded-lg shadow-lg dark:shadow-gray-800"
             mapContainerStyle={mapContainerStyle}
             center={center}
             zoom={7}
@@ -99,6 +114,7 @@ import {
             options={{
               minZoom: 7,
               maxZoom: 8,
+              styles: theme === "dark" ? darkMapStyles : null,
             }}
           >
             {selectedPosition?.length && <Marker position={{lng: selectedPosition[0], lat: selectedPosition[1]}} />}

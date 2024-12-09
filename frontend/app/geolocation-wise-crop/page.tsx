@@ -67,7 +67,7 @@ const GeolocationPage = ()=> {
       </header>
 
       {/* Google Map Component */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 dark:bg-gray-700">
         <GoogleMapComponent
           onLocationSelect={(data) => setSelectedLocation(data)}
           mapVisible={true}

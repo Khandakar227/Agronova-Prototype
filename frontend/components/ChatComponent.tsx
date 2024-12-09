@@ -78,9 +78,9 @@ const ChatComponent = () => {
 
       {/* Chat Box */}
       {isOpen && (
-        <div className="fixed bottom-20 resize-y max-h-[80vh] right-6 bg-white shadow-lg rounded-lg w-80 z-50">
+        <div className="fixed bottom-20 resize-y max-h-[80vh] right-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg w-80 z-50">
           {/* Header */}
-          <div className="p-4 bg-green-600 text-white rounded-t-lg">
+          <div className="p-4 bg-green-600 dark:bg-green-700 text-white rounded-t-lg">
             <h3 className="text-lg font-bold">কৃষিমিত্র</h3>
             <p className="text-xs">
               স্বাগতম! আমি কৃষিমিত্র, আপনার কৃষি সহায়ক চ্যাটবট।
@@ -132,7 +132,7 @@ const ChatComponent = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="আপনার বার্তা লিখুন..."
-              className="flex-grow resize-y outline-none px-2 py-1 rounded-md border"
+              className="flex-grow resize-y dark:text-black outline-none px-2 py-1 rounded-md border"
               disabled={loading}
             />
             <button
