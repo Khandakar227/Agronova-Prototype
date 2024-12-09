@@ -58,7 +58,7 @@ const GeolocationPage = ()=> {
   }, [selectedLocation])
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 dark:bg-less-dark">
       <Navbar/>
       {/* Page Header */}
       <header className="text-center py-6 bg-green-700 text-white">
@@ -67,7 +67,7 @@ const GeolocationPage = ()=> {
       </header>
 
       {/* Google Map Component */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 dark:bg-less-dark">
         <GoogleMapComponent
           onLocationSelect={(data) => setSelectedLocation(data)}
           mapVisible={true}

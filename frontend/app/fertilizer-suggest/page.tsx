@@ -3,7 +3,7 @@ import FertilizerRecommendationForm from "@/components/FertilizerRecommendationF
 
 export default function FertilizerSuggest() {
   return (
-    <div>
+    <div className="dark:bg-dark dark:text-white">
         <Navbar />
 
         <div className="py-4">

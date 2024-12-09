@@ -70,14 +70,14 @@ const CropRrecommendationForm = ({ setCrop, setCropDetail }:FormProps) => {
 
   return (
     <form
-      className="max-w-md w-full mx-auto p-4 bg-green-200 shadow-md rounded-md"
+      className="max-w-md w-full mx-auto p-4 bg-green-200 dark:bg-gray-800 shadow-md rounded-md"
       onSubmit={handleSubmit}
     >
       {Object.entries(cropRecommendationOptions).map(([key, values]) => (
         <div className="mb-4" key={key}>
           <label
             htmlFor={key}
-            className="block text-xs font-medium text-gray-700"
+            className="block text-xs font-medium text-gray-700 dark:text-gray-200"
           >
             {key === "soilDepth" && "মাটির গভীরতা"}
             {key === "soilTexture" && "মাটির গঠন"}
@@ -91,7 +91,7 @@ const CropRrecommendationForm = ({ setCrop, setCropDetail }:FormProps) => {
             name={key}
             value={formData[key as keyof FormData]}
             onChange={handleChange}
-            className="mt-2 block w-full rounded-md border shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
+            className="mt-2 block w-full rounded-md border dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
             required
           >
             <option value="">নির্বাচন করুন...</option>
@@ -107,7 +107,7 @@ const CropRrecommendationForm = ({ setCrop, setCropDetail }:FormProps) => {
       <div className="mb-4">
         <label
           htmlFor="temperature"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-200"
         >
           তাপমাত্রা (°C)
         </label>
@@ -117,7 +117,7 @@ const CropRrecommendationForm = ({ setCrop, setCropDetail }:FormProps) => {
           name="temperature"
           value={formData.temperature}
           onChange={handleChange}
-          className="mt-1 p-1 block w-full rounded-md border shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+          className="mt-1 p-1 block w-full rounded-md border dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
           required
         />
       </div>
@@ -125,7 +125,7 @@ const CropRrecommendationForm = ({ setCrop, setCropDetail }:FormProps) => {
       <div className="mb-4">
         <label
           htmlFor="rainfall"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-200"
         >
           বৃষ্টিপাত (মিমি)
         </label>
@@ -135,7 +135,7 @@ const CropRrecommendationForm = ({ setCrop, setCropDetail }:FormProps) => {
           name="rainfall"
           value={formData.rainfall}
           onChange={handleChange}
-          className="mt-1 p-1 block w-full rounded-md border shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+          className="mt-1 p-1 block w-full rounded-md border dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
           required
         />
       </div>
@@ -143,7 +143,7 @@ const CropRrecommendationForm = ({ setCrop, setCropDetail }:FormProps) => {
       <div className="mb-4">
         <label
           htmlFor="soilPH"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-200"
         >
           মাটির পিএইচ (০-১৪)
         </label>
@@ -153,7 +153,7 @@ const CropRrecommendationForm = ({ setCrop, setCropDetail }:FormProps) => {
           name="soilPH"
           value={formData.soilPH}
           onChange={handleChange}
-          className="mt-1 p-1 block w-full rounded-md border shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
+          className="mt-1 p-1 block w-full rounded-md border dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
           min="0"
           max="14"
           step={0.001}
@@ -162,10 +162,10 @@ const CropRrecommendationForm = ({ setCrop, setCropDetail }:FormProps) => {
       </div>
 
       <button
-        disabled={loading}
-        type="submit"
-        className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-      >
+    disabled={loading}
+    type="submit"
+    className="w-full bg-green-600 dark:bg-green-700 text-white py-2 px-4 rounded-md hover:bg-green-700 dark:hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
+  >
         {
             loading ? 'অপেক্ষা করুন' : 'জমা দিন'
         }

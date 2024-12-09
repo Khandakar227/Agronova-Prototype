@@ -6,6 +6,7 @@ import {
     Marker,
   } from "@react-google-maps/api";
   import { useEffect, useRef, useState } from "react";
+import { darkMapStyles } from "./DarkmapStyles";
   
   const mapContainerStyle = {
     height: "650px", 
@@ -70,7 +71,7 @@ import {
   
     return (
       <>
-          <p className="text-sm pt-4">  আপনার এলাকা খুঁজুন বা মানচিত্রে চিহ্নিত করুন</p>
+          <p className="text-sm pt-4 dark:text-white">  আপনার এলাকা খুঁজুন বা মানচিত্রে চিহ্নিত করুন....</p>
          
           <Autocomplete
             onLoad={(autocomplete) => (autocompleteRef.current = autocomplete)}
@@ -78,13 +79,13 @@ import {
             fields={["geometry", "name", "formatted_address"]}
           >
             <div className="flex justify-center items-center gap-4">
-              <input
-                type="search"
-                id="place"
-                ref={inputRef}
-                placeholder="শহর, জেলা খুঁজুন..."
-                className="shadow border w-full rounded-md outline-none px-4 py-2 my-3"
-              />
+            <input
+              type="search"
+              id="place"
+              ref={inputRef}
+              placeholder="শহর, জেলা খুঁজুন..."
+              className="shadow w-full rounded-md outline-none px-4 py-2 my-3 bg-white dark:bg-dark text-gray-900  dark:text-white border-gray-400 border"
+            />
               
             </div>
           </Autocomplete>
@@ -99,6 +100,7 @@ import {
             options={{
               minZoom: 7,
               maxZoom: 8,
+              styles: darkMapStyles,
             }}
           >
             {selectedPosition?.length && <Marker position={{lng: selectedPosition[0], lat: selectedPosition[1]}} />}

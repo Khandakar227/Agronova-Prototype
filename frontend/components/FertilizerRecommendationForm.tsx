@@ -65,7 +65,7 @@ export default function FertilizerRecommendationForm() {
     <div className="p-4">
       <form
         action="POST"
-        className="mx-auto max-w-2xl p-4 rounded shadow"
+        className="mx-auto max-w-2xl px-4 py-12 rounded shadow dark:bg-white dark:bg-opacity-5"
         onSubmit={onSubmit}
       >
         <div className="w-full">
