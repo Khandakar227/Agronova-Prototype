@@ -32,7 +32,7 @@ export default function Navbar() {
                 </ul>
             </div>
 
-            <div className="md:hidden z-10">
+            <div className="md:hidden z-20">
                 <MobileSidebar />
             </div>
         </div>

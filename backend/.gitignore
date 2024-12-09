@@ -169,3 +169,5 @@ cython_debug/
 
 *.pkl
 *.keras
+*.h5
+*.npy
