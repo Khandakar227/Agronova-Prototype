@@ -75,7 +75,7 @@ const GeolocationPage = ()=> {
 
         {/* Location Display */}
         {selectedLocation && (
-          <div className="p-6 bg-white rounded-lg shadow-lg fixed top-20 right-0">
+          <div className="p-6 bg-white dark:bg-[#1c1c1c] dark:text-gray-50 rounded-lg shadow-lg fixed top-20 right-0">
             <button className="rounded-2xl p-1 shadow border bg-green-100" onClick={() =>setVisible(!visible)}>
               <ChevronRight />
             </button>

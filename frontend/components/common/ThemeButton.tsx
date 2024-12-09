@@ -20,14 +20,14 @@ export default function ThemeButton() {
 
   return (
     <button
-      className={`rounded-full flex items-center p-1 shadow ${theme == "dark" ? "bg-green-50" : "bg-green-950"} w-12`}
+      className={`rounded-full flex items-center px-1 py-[2px] shadow ${theme == "dark" ? "bg-green-100" : "bg-green-950"} w-12`}
       onClick={toggleTheme}
     >
       {
         theme == "light" ? (
-          <span className="border rounded-full">🌞</span>
+          <span className="border rounded-full bg-green-200">🌞</span>
         ) : (
-          <span className="border rounded-full translate-x-full">🌙</span>
+          <span className="border rounded-full translate-x-5 bg-black">🌙</span>
         )
       }
     </button>
