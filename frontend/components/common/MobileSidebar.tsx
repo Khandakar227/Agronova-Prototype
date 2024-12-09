@@ -3,6 +3,7 @@ import { CircleX, Menu } from "lucide-react";
 import ThemeButton from "./ThemeButton";
 import Link from "next/link";
 import { useState } from "react";
+import { motion } from 'framer-motion';
 
 export default function MobileSidebar() {
   const [show, setShow] = useState(false);
@@ -14,9 +15,10 @@ export default function MobileSidebar() {
           <Menu />
         </button>
       </div>
-      {
-        show && (
-        <div className="fixed top-0 right-0 p-4 bg-white dark:bg-[#20251f] dark:text-gray-100 min-h-screen min-w-48">
+      <motion.div
+        animate={{ width: show ? 200 : 0 }}
+        transition={{ duration: 0.3 }}
+        className="fixed top-0 right-0 p-4 bg-white dark:bg-[#20251f] dark:text-gray-100 min-h-screen min-w-48">
           <div className="pt-2 pb-8 flex justify-end">
             <button onClick={() => setShow(false)}>
               <CircleX />
@@ -36,9 +38,7 @@ export default function MobileSidebar() {
               <Link className="p-1 block" href={"/geolocation-wise-crop"}>জিওলোকেশন ভিত্তিক ফসল</Link>
             </li>
           </ul>
-        </div>
-        )
-      }
+        </motion.div>
     </>
   );
 }
