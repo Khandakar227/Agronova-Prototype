@@ -56,7 +56,7 @@ class CropPredictionInput(BaseModel):
     lightIntensity: str
     # 0 - 14
     soilPH: float
-
+    
 
 # Define route for predicting crops
 @app.post("/predict-crop")
