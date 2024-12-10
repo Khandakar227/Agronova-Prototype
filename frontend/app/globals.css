@@ -3,3 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+    @apply bg-green-50 text-gray-800 dark:bg-dark dark:text-gray-200;
+}

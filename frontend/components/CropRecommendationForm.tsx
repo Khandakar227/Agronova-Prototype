@@ -70,14 +70,14 @@ const CropRrecommendationForm = ({ setCrop, setCropDetail }:FormProps) => {
 
   return (
     <form
-      className="max-w-md w-full mx-auto p-4 bg-green-200 dark:bg-gray-800 shadow-md rounded-md"
+      className="max-w-md w-full mx-auto p-4 bg-green-200 dark:bg-dark shadow-md rounded-md"
       onSubmit={handleSubmit}
     >
       {Object.entries(cropRecommendationOptions).map(([key, values]) => (
         <div className="mb-4" key={key}>
           <label
             htmlFor={key}
-            className="block text-xs font-medium text-gray-700 dark:text-gray-200"
+            className="block text-xs font-medium text-gray-700 dark:bg-dark dark:text-gray-200"
           >
             {key === "soilDepth" && "মাটির গভীরতা"}
             {key === "soilTexture" && "মাটির গঠন"}
