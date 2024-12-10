@@ -99,7 +99,7 @@ import { darkMapStyles } from "./DarkmapStyles";
             onClick={handleMapClick}
             options={{
               minZoom: 7,
-              maxZoom: 8,
+              maxZoom: 9,
               styles: darkMapStyles,
             }}
           >

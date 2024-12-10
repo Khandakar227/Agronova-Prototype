@@ -181,7 +181,7 @@ const GeolocationPage = () => {
 {weather && (
   <div
     className={`fixed top-20 left-0  ${
-      weatherVisible ? "w-80 p-6 bg-white dark:bg-less-dark dark:text-gray-200 shadow-lg rounded-r-lg" : "w-16 h-16 bg-green-500 dark:bg-lime-500 rounded-r-full"
+      weatherVisible ? "w-80 p-6 bg-white dark:bg-less-dark dark:text-gray-200 shadow-lg rounded-r-lg" : "w-16 h-16 shadow-md shadow-green-700 bg-green-500 dark:bg-lime-500 rounded-r-full"
     }`}
     style={{
       overflow: weatherVisible ? "visible" : "hidden",

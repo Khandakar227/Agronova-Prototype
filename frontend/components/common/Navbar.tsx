@@ -21,9 +21,9 @@ export default function Navbar() {
                         <div className="absolute top-full left-0">
                             <div className="bg-white dark:bg-[#071a0f] rounded-lg shadow-lg hidden group-hover:block">
                                 <ul>
-                                    <li className="p-2 hover:bg-green-900"><Link href={"/crop-recommendation"}>ফসল পরামর্শ</Link></li>
-                                    <li className="p-2 hover:bg-green-900"><Link href={"/fertilizer-suggest"}>সার পরামর্শ</Link></li>
-                                    <li className="p-2 hover:bg-green-900"><Link href={"/geolocation-wise-crop"}>জিওলোকেশন ভিত্তিক ফসল</Link></li>
+                                    <li className="p-2 hover:bg-green-200 hover:rounded-md hover:dark:bg-green-900"><Link href={"/crop-recommendation"}>ফসল পরামর্শ</Link></li>
+                                    <li className="p-2 hover:bg-green-200 hover:rounded-md hover:dark:bg-green-900"><Link href={"/fertilizer-suggest"}>সার পরামর্শ</Link></li>
+                                    <li className="p-2 hover:bg-green-200 hover:rounded-md hover:dark:bg-green-900"><Link href={"/geolocation-wise-crop"}>জিওলোকেশন ভিত্তিক ফসল</Link></li>
                                 </ul>
                             </div>
                         </div>
