@@ -9,9 +9,9 @@ export default function CropRecommendation() {
   const [cropDetail, setCropDetail] = useState(null as { name: string; description: string } | null);
 
   return (
-    <div>
+    <div className="dark:bg-less-dark">
       <Navbar />
-      <h1 className="text-3xl font-bold text-center py-4 mx-auto max-w-2xl">
+      <h1 className="text-3xl font-bold text-center py-4 mx-auto max-w-2xl dark:text-gray-200">
         মাটি ও পরিবেশগত তথ্যের ভিত্তিতে কোন ফসল চাষ করা উচিত তা আমরা পরামর্শ দেই
       </h1>
 
