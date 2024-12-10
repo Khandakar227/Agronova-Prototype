@@ -2,6 +2,8 @@ import ChatComponent from "@/components/ChatComponent";
 import Navbar from "@/components/common/Navbar";
 import FeaturesSection from "@/components/FeaturesSection";
 import HeroSection from "@/components/HeroSection";
+import Benefits from "@/components/Benefits";
+import Footer from "@/components/footers";
 
 export default function Home() {
   return (
@@ -10,6 +12,8 @@ export default function Home() {
       <HeroSection/>
       <FeaturesSection />
       <ChatComponent/>
+      <Benefits/>
+<Footer/>
     </div>
   );
 }

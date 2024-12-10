@@ -35,7 +35,7 @@ export default function MobileSidebar() {
             <li className="font-semibold hover:bg-green-800">
               <Link className="p-1 block" href={"/fertilizer-suggest"}>সার পরামর্শ</Link>
             </li>
-            <li className="font-semibold hover:bg-green-800">
+            <li className="font-semibold hover:dark:bg-green-800">
               <Link className="p-1 block" href={"/geolocation-wise-crop"}>জিওলোকেশন ভিত্তিক ফসল</Link>
             </li>
           </ul>
