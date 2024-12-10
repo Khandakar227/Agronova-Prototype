@@ -70,7 +70,7 @@ const CropRrecommendationForm = ({ setCrop, setCropDetail }:FormProps) => {
 
   return (
     <form
-      className="max-w-md w-full mx-auto p-4 bg-green-200 dark:bg-dark shadow-md rounded-md"
+      className="max-w-md w-full mx-auto p-4  dark:bg-dark shadow-md shadow-green-700 bg-green-200 rounded-md dark:shadow-md dark:shadow-green-600"
       onSubmit={handleSubmit}
     >
       {Object.entries(cropRecommendationOptions).map(([key, values]) => (

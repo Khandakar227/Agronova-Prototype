@@ -65,7 +65,7 @@ export default function FertilizerRecommendationForm() {
     <div className="p-4">
       <form
         action="POST"
-        className="mx-auto max-w-2xl px-4 py-12 rounded shadow dark:bg-white dark:bg-opacity-5"
+        className="mx-auto max-w-2xl px-4 py-12 rounded-md bg-green-200 shadow-md shadow-green-700  shadow-green-800 dark:bg-dark dark:shadow-lg dark:shadow-green-600 "
         onSubmit={onSubmit}
       >
         <div className="w-full">
@@ -79,7 +79,7 @@ export default function FertilizerRecommendationForm() {
             name="crop"
             id="crop"
             required
-            className="mb-2 block w-full rounded-md border shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
+            className="mb-2 block w-full rounded-md border shadow-sm dark:text-gray-800 focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
           >
             <option value=""> সিলেক্ট করুন </option>
             {Object.keys(fertilizersCrops).map((crop) => (
@@ -89,8 +89,8 @@ export default function FertilizerRecommendationForm() {
             ))}
           </select>
         </div>
-        <div className="w-full md:w-1/2">
-          <label htmlFor="soilType" className="flex gap-1 items-center">
+        <div className="w-full md:w-1/2 ">
+          <label htmlFor="soilType" className="flex gap-1 items-center ">
             <Droplet size={15} />
             <p>
               মাটির ধরণ<span className="text-red-500">*</span>
@@ -99,7 +99,7 @@ export default function FertilizerRecommendationForm() {
           <select
             name="soilType"
             id="soilType"
-            className="mb-2 block w-full rounded-md border shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
+            className="mb-2 block w-full rounded-md border dark:text-gray-800 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
           >
             <option value=""> সিলেক্ট করুন </option>
             {Object.keys(fertilizersSoilType).map((soilType) => (
@@ -125,7 +125,7 @@ export default function FertilizerRecommendationForm() {
               id="n"
               placeholder="কেজি/হেক্টর"
               required
-              className="mb-2 block w-full rounded-md border shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
+              className="mb-2 block w-full rounded-md border dark:text-gray-800 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
             />
           </div>
 
@@ -139,7 +139,7 @@ export default function FertilizerRecommendationForm() {
               id="p"
               placeholder="কেজি/হেক্টর"
               required
-              className="mb-2 block w-full rounded-md border shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
+              className="mb-2 block w-full rounded-md border dark:text-gray-800 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
             />
           </div>
 
@@ -153,7 +153,7 @@ export default function FertilizerRecommendationForm() {
               id="k"
               placeholder="কেজি/হেক্টর"
               required
-              className="mb-2 block w-full rounded-md border shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
+              className="mb-2 block w-full rounded-md border dark:text-gray-800 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
             />
           </div>
         </div>
@@ -168,7 +168,7 @@ export default function FertilizerRecommendationForm() {
             id="temp"
             min={0}
             step={0.01}
-            className="mb-2 block w-full rounded-md border shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
+            className="mb-2 block w-full rounded-md border dark:text-gray-800 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
           />
         </div>
 
@@ -183,7 +183,7 @@ export default function FertilizerRecommendationForm() {
             min={0}
             max={100}
             step={0.01}
-            className="mb-2 block w-full rounded-md border shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
+            className="mb-2 block w-full rounded-md border dark:text-gray-800 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
           />
         </div>
 
@@ -198,7 +198,7 @@ export default function FertilizerRecommendationForm() {
             min={0}
             max={100}
             step={0.01}
-            className="mb-2 block w-full rounded-md border shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
+            className="mb-2 block w-full rounded-md border dark:text-gray-800 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
           />
         </div>
 
@@ -216,10 +216,10 @@ export default function FertilizerRecommendationForm() {
       {fertilizer ? (
         <div className="mx-auto max-w-2xl px-4 pb-8 pt-24 m-4 rounded shadow bg-lime-50">
         <div id="recommended-result">
-            <h2 className="text-center text-xl">
+            <h2 className="text-center text-xl dark:text-gray-800">
                 প্রস্তাবিত সার
             </h2>
-            <div className="text-center text-2xl font-bold mt-4">{fertilizer}</div>
+            <div className="text-center text-2xl font-bold mt-4 dark:text-gray-800">{fertilizer}</div>
             {description ? (
             <div className="pt-8">
                 <div data-color-mode="light">

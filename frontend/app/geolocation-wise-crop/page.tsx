@@ -128,7 +128,7 @@ const GeolocationPage = () => {
           className={`fixed top-20 right-0 ${
             suitabilityVisible
               ? "w-80 p-6 bg-white dark:bg-less-dark dark:text-gray-50 shadow-lg rounded-l-lg"
-              : "w-16 h-16 bg-green-500 dark:bg-lime-500 rounded-l-full"
+              : "w-16 h-16 shadow-md shadow-green-700 bg-green-500 dark:bg-lime-500 rounded-l-full"
           }`}
           style={{
             overflow: suitabilityVisible ? "visible" : "hidden",
