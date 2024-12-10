@@ -1,12 +1,9 @@
 import Link from "next/link";
+import { IconType } from "react-icons";
 import { BsGithub } from "react-icons/bs";
 
-const navigation = [
-  {
-    name: "GitHub",
-    href: "https://github.com/haramizu/demo.haramizu.com",
-    icon: BsGithub,
-  },
+const navigation:{ name:string, href: string, icon: IconType}[] = [
+
 ];
 
 export default function Footer() {

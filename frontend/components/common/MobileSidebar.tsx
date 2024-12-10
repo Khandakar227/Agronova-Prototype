@@ -29,6 +29,9 @@ export default function MobileSidebar() {
             <li className="font-semibold hover:bg-green-800">
               <Link className="p-1 block" href={"/"}>হোম</Link>
             </li>
+            <li className="font-semibold hover:dark:bg-green-800">
+              <Link className="p-1 block" href={"/geolocation-wise-crop"}>জিওলোকেশন ভিত্তিক ফসল</Link>
+            </li>
             <li className="font-semibold hover:bg-green-800">
               <Link className="p-1 block" href={"/crop-recommendation"}>ফসল পরামর্শ</Link>
             </li>
@@ -36,7 +39,7 @@ export default function MobileSidebar() {
               <Link className="p-1 block" href={"/fertilizer-suggest"}>সার পরামর্শ</Link>
             </li>
             <li className="font-semibold hover:dark:bg-green-800">
-              <Link className="p-1 block" href={"/geolocation-wise-crop"}>জিওলোকেশন ভিত্তিক ফসল</Link>
+              <Link className="p-1 block" href={"/plant-disease"}>গাছের রোগ শনাক্তকরণ</Link>
             </li>
           </ul>
         </motion.div>

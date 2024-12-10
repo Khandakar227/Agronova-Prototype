@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import { Send } from "lucide-react";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 
+const initialTemp = "আপনি একজন AI চ্যাটবট, যার নাম কৃষিমিত্র। একজন ব্যবহারকারী কৃষি বিষয়ক প্রশ্ন করেছে। তার প্রশ্ন বুঝে সহজ বাংলা ভাষায় সঠিক পরামর্শ দিন। ফসলের নাম, জলবায়ু, মাটির গুণাগুণ, এবং অন্যান্য প্রাসঙ্গিক তথ্য বিবেচনা করুন। \nপ্রশ্ন: "
+
 const ChatComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<{ user: string; bot: string }[]>([]);
+  const [messages, setMessages] = useState<{ role: string; content: string }[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -24,10 +26,11 @@ const ChatComponent = () => {
 
   const handleSend = async () => {
     if (!input) return;
-
+    let message = input;
+    if (!messages.length) message = initialTemp + input;
     // Add user's input to messages
-    const newMessages = [...messages, { user: input, bot: "..." }];
-    setMessages(newMessages);
+    const newMessage = { role: "user", content: message };
+    setMessages([...messages, newMessage]);
     setLoading(true);
 
     try {
@@ -43,25 +46,28 @@ const ChatComponent = () => {
       if (response.ok && data.response) {
         const botReply = data.response;
         setMessages([
-          ...newMessages.slice(0, -1),
-          { user: input, bot: botReply },
+          ...messages,
+          newMessage,
+          { role: "assistant", content: botReply },
         ]);
       } else {
         setMessages([
-          ...newMessages.slice(0, -1),
+          ...messages,
+          newMessage,
           {
-            user: input,
-            bot: "দুঃখিত, সিস্টেমের সমস্যা হয়েছে। পরে আবার চেষ্টা করুন।",
+            role: "assistant",
+            content: "দুঃখিত, সিস্টেমের সমস্যা হয়েছে। পরে আবার চেষ্টা করুন।",
           },
         ]);
       }
     } catch (error) {
       console.error("Error fetching response:", error);
       setMessages([
-        ...newMessages.slice(0, -1),
+        ...messages,
+        newMessage,
         {
-          user: input,
-          bot: "দুঃখিত, সার্ভারের সাথে সংযোগ স্থাপন করতে পারছি না।",
+          role: "assistant",
+          content: "দুঃখিত, সার্ভারের সাথে সংযোগ স্থাপন করতে পারছি না।",
         },
       ]);
     } finally {
@@ -117,14 +123,21 @@ const ChatComponent = () => {
             </div>
             {messages.map((msg, idx) => (
               <div key={idx} className="mb-2">
-                  {/* Display user message */}
-                  <p className="text-orange-600 text-end font-semibold text-sm pt-4">আপনি:</p>
-                  <div className="p-1 bg-orange-50 text-gray-800 rounded shadow ml-4 text-sm">{msg.user}</div>
-                  {/* Display bot message */}
-                <p className="text-green-500 text-sm font-semibold pt-4">কৃষিমিত্র:</p>
-                <div data-color-mode="light" className="p-1 bg-green-50 rounded shadow mr-4">
-                  <MarkdownPreview style={{backgroundColor: "transparent", fontSize: "12px"}} source={msg.bot} />
-                </div>
+                {
+                  msg.role == "user" ? (
+                    <>
+                      <p className="text-orange-600 text-end font-semibold text-sm pt-4">আপনি:</p>
+                      <div className="p-1 bg-orange-50 dark:bg-slate-800 text-black dark:text-white rounded shadow ml-4 text-sm">{idx == 0 ? msg.content.replace(initialTemp, "") : msg.content}</div>
+                    </>
+                  ) : (
+                    <>
+                    <p className="text-green-500 text-sm font-semibold pt-4">কৃষিমিত্র:</p>
+                    <div data-color-mode="light" className="p-1 bg-green-50 rounded shadow mr-4">
+                      <MarkdownPreview style={{backgroundColor: "transparent", fontSize: "12px"}} source={msg.content} />
+                    </div>
+                    </>
+                  )
+                } 
               </div>
             ))}
             {loading && (
