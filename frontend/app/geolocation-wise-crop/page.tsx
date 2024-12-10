@@ -101,7 +101,7 @@ const GeolocationPage = () => {
           humidity: `${data.main.humidity}%`,
           wind: `${data.wind.speed} মিটার/সেকেন্ড`,
           rainfall: data.rain?.["1h"] ? `${data.rain["1h"]} মিমি` : "0 মিমি",
-          weatherType: weatherTypeBn[data.weather[0].description] || "অজানা",
+          weatherType: weatherTypeBn[data.weather[0].description as keyof typeof weatherTypeBn] || "অজানা",
         });
       })
       .catch((err) => console.error(err));

@@ -1,15 +1,20 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, File, UploadFile, HTTPException
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from keras.models import load_model  # TensorFlow is required for Keras to work
+from keras.preprocessing.image import img_to_array
+from PIL import Image
+import io
 import numpy as np
 import pickle
+from weights.const import plant_diseases, plant_diseases_dict
 
 crop_optimal_model_path = 'weights/Crop Optimal Requirements/dtc_model.pkl'
 crop_suitability_model_path = 'weights/Crop Suitability Geospatial/models_crops_mappings.pkl'
 plant_disease_model_path = 'weights/Plant Disease/plant_disease_model_inception.keras'
 fertilizer_recommendation_model_path = 'weights/Recommend Fertilizer/ferilizer_classifier.pkl'
 fertilizers_crops_soil_path = 'weights/Recommend Fertilizer/fertilizers_crops_soil.pkl'
+IMAGE_SIZE = (224, 224) 
 
 # Load the model and label encoder
 try:
@@ -32,6 +37,7 @@ except FileNotFoundError:
     raise RuntimeError("Model file 'dtc_model.pkl' not found. Please ensure the file is present.")
 except pickle.UnpicklingError:
     raise RuntimeError("Error occurred while loading the model. The file may be corrupted or incompatible.")
+
 
 # FastAPI app instance
 app = FastAPI()
@@ -158,3 +164,32 @@ async def recommend_fertilizer(input_data: FertilizerRecommendationInput):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error occurred during recommendation: {str(e)}")
 
+@app.post("/predict-disease")
+async def predict_disease(file: UploadFile = File(...)):
+    try:
+        # Check if the uploaded file is an image
+        if not file.content_type.startswith("image/"):
+            raise HTTPException(status_code=400, detail="File is not an image.")
+        # Read the content
+        contents = await file.read()
+        # Load the image
+        image = Image.open(io.BytesIO(contents))
+        image = image.convert("RGB")  # Ensure image is in RGB mode
+        image = image.resize(IMAGE_SIZE)  # Resize the image
+
+        image_array = img_to_array(image)
+        image_array = np.expand_dims(image_array, axis=0)  # Add batch dimension
+        image_array = image_array / 255.0  # Normalize the image (if required)
+
+        # Make prediction
+        predictions = plant_disease_model.predict(image_array)
+        results = [{"class": plant_diseases[i], "confidence": float(pred)} for i, pred in enumerate(predictions[0])]
+
+        sorted_results = sorted(results, key=lambda x: x["confidence"], reverse=True)
+        filtered_results = [result for result in sorted_results if result["confidence"] >= 0.3]
+        response = [{**plant_diseases_dict[res["class"]], "confidence": res["confidence"]} for res in filtered_results]
+        print(response)
+        return {"predictions": response}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error occurred during prediction: {str(e)}")
+    

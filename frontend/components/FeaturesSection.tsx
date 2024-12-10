@@ -42,6 +42,13 @@ export default function FeaturesSection() {
             আপনার কৃষি সম্পর্কিত যেকোনো প্রশ্নের উত্তর পেতে আমাদের এআই চ্যাটবট ব্যবহার করুন।
           </p>
         </div>
+        <Link href={"/plant-disease"} className="cursor-pointer max-w-sm bg-white p-6 rounded-lg shadow text-center hover:shadow-lg dark:bg-less-dark dark:text-white" >
+          <h2 className="text-2xl font-semibold mb-4 ">গাছের রোগ সনাক্তকরণে আধুনিক প্রযুক্তি</h2>
+          <p className="text-green-700 dark:text-green-200">
+          স্গাছের পাতার ছবি আপলোড করুন, তাৎক্ষণিকভাবে রোগ শনাক্ত করুন।
+          </p>
+        </Link>
+        
       </div>
     </div>
   )

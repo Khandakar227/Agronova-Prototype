@@ -1,10 +1,9 @@
+import { geminiProModel } from "@/libs/gemini";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from "next/server";
 
 export const POST = async (request: Request) => {
     try {
-        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
         const data = await request.json();
         const {crop, fertilizer, N, P, K} = data;
         const prompt = `
@@ -36,7 +35,7 @@ export const POST = async (request: Request) => {
 পরিবেশগত বিবেচনা প্রদান করুন
 পরিপূরক কৃষি অনুশীলন সুপারিশ করুন`;
 
-        const result = await model.generateContent(prompt);
+        const result = await geminiProModel.generateContent(prompt);
         
         const response = result.response.text();
         
