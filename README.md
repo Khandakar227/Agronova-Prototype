@@ -11,7 +11,10 @@ Activate the environment (For Windows).
 ```bash
 venv/Scripts/activate
 ```
-
+Install fastapi:
+```bash
+pip install fastapi[standard]
+```
 Install all the python packages.
 ```bash
 pip install -r requirements.txt
@@ -23,4 +26,4 @@ fastapi dev main.py
 ```
 
 ### Add the Model weights
-Download the [ZIP](https://drive.google.com/file/d/1ZuSwo6fr0TEUN7Qfksz6B_vbNNbQHEBP/view?usp=drive_link) file and extract it to `backend/weights` folder.
+Download the [ZIP](https://drive.google.com/file/d/16tueh_67HojvjO0A6mZ45JvW_Ig9vovg/view?usp=drive_link) file and extract it to `backend/weights` folder.

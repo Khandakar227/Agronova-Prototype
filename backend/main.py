@@ -1,11 +1,13 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from keras.models import load_model  # TensorFlow is required for Keras to work
 import numpy as np
 import pickle
 
 crop_optimal_model_path = 'weights/Crop Optimal Requirements/dtc_model.pkl'
 crop_suitability_model_path = 'weights/Crop Suitability Geospatial/models_crops_mappings.pkl'
+plant_disease_model_path = 'weights/Plant Disease/plant_disease_model_inception.keras'
 fertilizer_recommendation_model_path = 'weights/Recommend Fertilizer/ferilizer_classifier.pkl'
 fertilizers_crops_soil_path = 'weights/Recommend Fertilizer/fertilizers_crops_soil.pkl'
 
@@ -22,6 +24,9 @@ try:
     
     with open(fertilizers_crops_soil_path, 'rb') as model_file:
         fertilizers, fertlizer_crops_encoder, fertlizer_soil_encoder = pickle.load(model_file)
+        
+    # Load the plant disease model
+    plant_disease_model = load_model(plant_disease_model_path)
     
 except FileNotFoundError:
     raise RuntimeError("Model file 'dtc_model.pkl' not found. Please ensure the file is present.")
