@@ -49,6 +49,7 @@ app.add_middleware(
     allow_methods=["*"],  # Allow all HTTP methods
     allow_headers=["*"],  # Allow all HTTP headers
 )
+
 # Define input schema
 class CropPredictionInput(BaseModel):
     # medium (50-150 cm), deep (>>150 cm), shallow (20-50 cm)

@@ -28,8 +28,8 @@ const CropRrecommendationForm = ({ setCrop, setCropDetail }:FormProps) => {
     soilFertility: "moderate",
     soilSalinity: "medium (4-10 dS/m)",
     soilDrainage: "medium (4-10 dS/m)",
-    temperature: "",
-    rainfall: "",
+    temperature: "21",
+    rainfall: "0",
     lightIntensity: "clear skies",
     soilPH: "",
   });
