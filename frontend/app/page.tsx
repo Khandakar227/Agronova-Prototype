@@ -7,13 +7,13 @@ import Footer from "@/components/footers";
 
 export default function Home() {
   return (
-    <div className="relative bg-green-50 dark:bg-dark dark:text-white"> 
-      <Navbar/>
-      <HeroSection/>
+    <div className="relative bg-green-50 dark:bg-dark dark:text-white">
+      <Navbar />
+      <HeroSection />
       <FeaturesSection />
-      <ChatComponent/>
-      <Benefits/>
-<Footer/>
+      <ChatComponent />
+      <Benefits />
+      <Footer />
     </div>
   );
 }

@@ -53,6 +53,7 @@ function PlantDisease() {
     setFile(null);
     setPrediction(null);
   };
+
   const uploadFile = async () => {
     try {
       setLoading(true);
@@ -85,21 +86,20 @@ function PlantDisease() {
   };
 
   const closeDescription = () => {
-    setShowDesc(false)
-    setDescription("")
-  }
+    setShowDesc(false);
+    setDescription("");
+  };
+
   return (
     <>
       <div className="dark:bg-dark dark:text-white bg-white min-h-screen w-full">
         <Navbar />
         <div className="py-12 mx-auto max-w-3xl px-4">
           <h1 className="text-center text-3xl">
-            গাছের রোগ সনাক্তকরণে আধুনিক প্রযুক্তি
+            Modern Technology for Plant Disease Detection
           </h1>
           <p className="text-center mx-auto max-w-3xl py-4">
-            স্মার্টফোন বা ইন্টারনেট সংযুক্ত ডিভাইসের মাধ্যমে গাছের পাতার ছবি
-            আপলোড করুন। সঠিক তথ্য ও প্রতিরোধের পদ্ধতি সরবরাহ করে এটি আপনাকে
-            স্বাস্থ্যকর ফসল উৎপাদনে সহায়তা করবে।
+            Upload a photo of the plant leaf through a smartphone or internet-connected device. This will provide accurate information and preventive methods to help you in healthy crop production.
           </p>
           <div className="flex flex-col md:flex-row gap-2 justify-center">
             <NexItmage
@@ -130,7 +130,7 @@ function PlantDisease() {
                   className="hover:bg-green-200 dark:hover:bg-green-700 w-full text-center flex flex-col justify-center items-center gap-4 border border-green-950 dark:border-white border-dashed rounded-md py-12 px-4"
                 >
                   <ImageIcon className="opacity-50" size={54} />
-                  <p>ছবি আপলোড করুন</p>
+                  <p>Upload Image</p>
                 </button>
               </div>
             )}
@@ -141,8 +141,7 @@ function PlantDisease() {
               className="px-4 py-2 rounded-md font-bold bg-green-500 w-full my-2"
               disabled={loading}
             >
-              {" "}
-              {loading ? "প্রসেসিং..." : "শনাক্ত করুন"}{" "}
+              {loading ? "Processing..." : "Identify"}
             </button>
           )}
           <input
@@ -158,15 +157,15 @@ function PlantDisease() {
         <div className="py-12 px-4" id="predictions">
           {prediction && prediction.length && (
             <>
-              <h2 className="text-center text-2xl font-bold">সম্ভাব্য রোগ</h2>
+              <h2 className="text-center text-2xl font-bold">Possible Diseases</h2>
               <div className="flex flex-col gap-4 justify-center items-center p-4">
                 {prediction?.map((p, i) => (
                   <div
                     key={i}
                     className="shadow bg-green-50 dark:bg-green-950 dark:text-white text-gray-900 rounded-md p-2 w-full flex flex-col justify-center items-center gap-2"
                   >
-                    <h3 className="text-xl">ফসল: {p.crop}</h3>
-                    <h3 className="text-xl">রোগ: {p.disease}</h3>
+                    <h3 className="text-xl">Crop: {p.crop}</h3>
+                    <h3 className="text-xl">Disease: {p.disease}</h3>
                     <div className="border w-full mx-auto max-w-lg bg-gray-200 shadow inset-1 rounded-full overflow-hidden">
                       <div
                         style={{ width: (p.confidence * 100).toFixed(2) + "%" }}
@@ -178,8 +177,7 @@ function PlantDisease() {
                       onClick={() => knowDescription(p)}
                     >
                       <button className="bg-green-700 p-1 rounded shadow text-xs">
-                        {" "}
-                        আরো জানুন{" "}
+                        Learn More
                       </button>
                     </div>
                   </div>
@@ -190,9 +188,8 @@ function PlantDisease() {
         </div>
 
         <div
-          className={`${
-            showDesc ? "" : "hidden"
-          } fixed z-10 top-0 left-0 right-0 bottom-0 min-h-screen bg-gray-950 bg-opacity-15`}
+          className={`${showDesc ? "" : "hidden"
+            } fixed z-10 top-0 left-0 right-0 bottom-0 min-h-screen bg-gray-950 bg-opacity-15`}
         >
           <div className="mx-auto z-30 h-[90vh] overflow-y-auto bg-white dark:bg-dark dark:text-white rounded-md p-4 shadow max-w-4xl">
             <div className="flex justify-end">

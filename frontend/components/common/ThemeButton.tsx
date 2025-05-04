@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
+import { Moon, Sun } from "lucide-react";
 
 export default function ThemeButton() {
   const [theme, setTheme] = useState("light");
 
-  // On mount, check the user's localStorage for theme preference
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme") || "light";
     setTheme(storedTheme);
@@ -20,17 +20,21 @@ export default function ThemeButton() {
 
   return (
     <button
-      className={`rounded-full flex items-center px-1 py-[2px] shadow ${theme == "dark" ? "bg-green-100" : "bg-green-950"} w-12`}
       onClick={toggleTheme}
+      aria-label="Toggle Theme"
+      className={`relative flex items-center h-6 w-12 rounded-full shadow transition-colors duration-300 ${theme === "dark" ? "bg-green-100" : "bg-green-950"
+        }`}
     >
-      {
-        theme == "light" ? (
-          <span className="border rounded-full bg-green-200">🌞</span>
+      <span
+        className={`absolute left-[2px] top-[2px] h-5 w-5 flex items-center justify-center rounded-full bg-white text-sm transition-transform duration-300 ${theme === "dark" ? "translate-x-6" : "translate-x-0"
+          }`}
+      >
+        {theme === "dark" ? (
+          <Moon className="h-4 w-4 text-green-900" />
         ) : (
-          <span className="border rounded-full translate-x-5 bg-black">🌙</span>
-        )
-      }
+          <Sun className="h-4 w-4 text-yellow-300" />
+        )}
+      </span>
     </button>
   );
 }
-

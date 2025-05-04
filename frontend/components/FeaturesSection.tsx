@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function FeaturesSection() {
   const [chatbotOpen, setChatbotOpen] = useState(true);
+
   const emitChatbotOpen = () => {
     const chatbotEvent = new CustomEvent("chatbot", {
       detail: { open: chatbotOpen },
@@ -15,40 +16,43 @@ export default function FeaturesSection() {
   return (
     <div className="py-12 px-4" id="features">
       <div className="text-center">
-        <h1 className="text-4xl font-bold">আমাদের সেবা</h1>
+        <h1 className="text-4xl font-bold">Our Services</h1>
       </div>
       <div className="flex flex-wrap justify-center gap-8 p-8">
         <Link href="/geolocation-wise-crop" className="max-w-sm bg-white p-6 rounded-lg shadow text-center hover:shadow-lg dark:bg-less-dark dark:text-white">
-          <h2 className="text-2xl font-semibold mb-4">জিওলোকেশন ভিত্তিক সেবা</h2>
+          <h2 className="text-2xl font-semibold mb-4">Geolocation-Based Services</h2>
           <p className="text-green-700 dark:text-green-200">
-            আপনার অবস্থানের উপর ভিত্তি করে নির্ভুল কৃষি পরামর্শ এবং আবহাওয়ার আপডেট প্রদান।
+            Get accurate agricultural advice and weather updates based on your location.
           </p>
         </Link>
+
         <Link href="/crop-recommendation" className="max-w-sm bg-white p-6 rounded-lg shadow text-center hover:shadow-lg dark:bg-less-dark dark:text-white">
-          <h2 className="text-2xl font-semibold mb-4">ফসলের সুপারিশ</h2>
+          <h2 className="text-2xl font-semibold mb-4">Crop Recommendation</h2>
           <p className="text-green-700 dark:text-green-200">
-            আপনার এলাকার মাটি ও পরিবেশগত তথ্যের ভিত্তিতে কোন ফসল চাষ করা উচিত তা আমরা পরামর্শ দেই।
+            We suggest the most suitable crops to grow based on your area's soil and environmental data.
           </p>
         </Link>
-        <Link href="/fertilizer-suggest" className="max-w-sm bg-white p-6 rounded-lg shadow text-center hover:shadow-lg dark:bg-less-dark dark:text-white" >
-          <h2 className="text-2xl font-semibold mb-4 ">পরামর্শ অনুযায়ী সার প্রদান</h2>
+
+        <Link href="/fertilizer-suggest" className="max-w-sm bg-white p-6 rounded-lg shadow text-center hover:shadow-lg dark:bg-less-dark dark:text-white">
+          <h2 className="text-2xl font-semibold mb-4">Fertilizer Suggestions</h2>
           <p className="text-green-700 dark:text-green-200">
-          জমির মাটির গুনাগুন এবং ফসলের উপর ভিত্তি করে সঠিক সার নির্বাচন করুন।
+            Choose the right fertilizer based on soil quality and the type of crop.
           </p>
         </Link>
-        <div onClick={emitChatbotOpen} className="cursor-pointer max-w-sm bg-white p-6 rounded-lg shadow text-center hover:shadow-lg dark:bg-less-dark dark:text-white" >
-          <h2 className="text-2xl font-semibold mb-4 ">এআই চ্যাটবট</h2>
+
+        <div onClick={emitChatbotOpen} className="cursor-pointer max-w-sm bg-white p-6 rounded-lg shadow text-center hover:shadow-lg dark:bg-less-dark dark:text-white">
+          <h2 className="text-2xl font-semibold mb-4">AI Chatbot</h2>
           <p className="text-green-700 dark:text-green-200">
-            আপনার কৃষি সম্পর্কিত যেকোনো প্রশ্নের উত্তর পেতে আমাদের এআই চ্যাটবট ব্যবহার করুন।
+            Use our AI chatbot to get answers to any of your agriculture-related questions.
           </p>
         </div>
-        <Link href={"/plant-disease"} className="cursor-pointer max-w-sm bg-white p-6 rounded-lg shadow text-center hover:shadow-lg dark:bg-less-dark dark:text-white" >
-          <h2 className="text-2xl font-semibold mb-4 ">গাছের রোগ সনাক্তকরণে আধুনিক প্রযুক্তি</h2>
+
+        <Link href="/plant-disease" className="cursor-pointer max-w-sm bg-white p-6 rounded-lg shadow text-center hover:shadow-lg dark:bg-less-dark dark:text-white">
+          <h2 className="text-2xl font-semibold mb-4">Plant Disease Detection</h2>
           <p className="text-green-700 dark:text-green-200">
-          স্গাছের পাতার ছবি আপলোড করুন, তাৎক্ষণিকভাবে রোগ শনাক্ত করুন।
+            Upload a photo of the plant's leaf to instantly detect potential diseases.
           </p>
         </Link>
-        
       </div>
     </div>
   )

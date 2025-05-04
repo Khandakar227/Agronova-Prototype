@@ -21,14 +21,13 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative flex flex-col justify-center items-center h-full text-white mx-auto max-w-7xl p-4 text-center z-[1]">
-        <h1 className="text-2xl font-bold py-4">কৃষকের জন্য স্মার্ট সমাধান</h1>
-        <p className="text-5xl font-bold py-4">কৃষিতে সাফল্যের নতুন দিশা!</p>
+        <h1 className="text-2xl font-bold py-4">Smart Solutions for Farmers</h1>
+        <p className="text-5xl font-bold py-4">A New Direction for Success in Agriculture!</p>
         <p className="text-xl py-4 max-w-2xl">
-          কৃষিদিশারি আপনার বিশ্বস্ত সহযোগী, যা আধুনিক প্রযুক্তির সাহায্যে কৃষি
-          কাজকে আরও সহজ এবং লাভজনক করে তুলতে প্রস্তুত।
+          KrishiDishari is your trusted companion, ready to make farming easier and more profitable with the help of modern technology.
         </p>
         <div className="mx-auto text-center pt-10">
-          <ChevronsDown size={28} className="animate-bounce"/>
+          <ChevronsDown size={28} className="animate-bounce" />
         </div>
       </div>
     </section>
