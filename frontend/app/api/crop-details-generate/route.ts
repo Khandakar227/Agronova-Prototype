@@ -5,7 +5,7 @@ export const POST = async (request: Request) => {
     try {
         const data = await request.json();
         const crop = data.crop;
-        const prompt = `Give plain description(no markdown) (for a farmer about it, its benefits etc) about ${crop} in bangla, also its local name in bengali. Please respond only in JSON format: {name: "", description: ""})`;
+        const prompt = `Give plain description(no markdown) (for a farmer about it, its benefits etc) about ${crop}, also its local name. Please respond only in JSON format: {name: "", description: ""})`;
         const result = await geminiProModel.generateContent(prompt);
         
         const response = result.response.text();

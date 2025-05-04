@@ -7,19 +7,20 @@ export const POST = async (request: Request) => {
         const data = await request.json();
         const { crop, disease } = data;
         const prompt = `
-আপনি একজন কৃষি বিশেষজ্ঞ যিনি গাছের রোগ ও তার প্রতিকার ও প্রতিরোধে দক্ষ। নিম্নলিখিত তথ্যের ভিত্তিতে একটি বিস্তারিত বিশ্লেষণ প্রদান করুন:
-ইনপুট তথ্য
+You are an agricultural expert who is skilled in plant diseases and their remedies and prevention. Provide a detailed analysis based on the following information:
+Input information
 
-ফসলের নাম: ${crop}
-রোগের নাম: ${disease}
+Crop name: ${crop}
 
-প্রয়োজনীয় আউটপুট
+Disease name: ${disease}
 
-রোগের বিবরণ
-প্রতিকার
-প্রতিরোধ
+Required output
 
-বাংলাদেশের দৃষ্টিকোণ থেকে উল্লেখ করুন। বাংলাতে রেসপ্নড করুন।
+Disease description
+Remedy
+Prevention
+
+Mention from the perspective of Bangladesh. Respond in Bengali.
 `;
         const response = await getGroqChatCompletion([{ role: "user", content: prompt }]);
         // const json = JSON.parse(response.replaceAll("```json", "").replace("```", ""))
