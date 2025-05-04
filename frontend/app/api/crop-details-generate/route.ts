@@ -1,5 +1,4 @@
 import { geminiProModel } from "@/libs/gemini";
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from "next/server";
 
 export const POST = async (request: Request) => {
