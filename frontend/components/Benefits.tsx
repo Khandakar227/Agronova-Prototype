@@ -19,11 +19,11 @@ const Benefits = () => {
         {/* Title Section */}
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 dark:text-white mb-4">
-            কৃষিদিশারির প্রধান ব্যবহারকারী এবং উপকারভোগী
+            Primary Users and Beneficiaries of Krishidishari
           </h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed mx-auto max-w-3xl">
-            কৃষিদিশারি একটি আধুনিক প্রযুক্তি-ভিত্তিক প্ল্যাটফর্ম, যা বিশেষত কৃষকদের জন্য তৈরি।
-            এর ব্যবহারকারী এবং উপকারভোগীদের তালিকা এখানে দেওয়া হল।
+            Krishidishari is a modern technology-based platform designed especially for farmers.
+            Here’s a list of its main users and beneficiaries.
           </p>
         </div>
 
@@ -31,28 +31,24 @@ const Benefits = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Left Side - Text */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-700 dark:text-green-400 mb-4">কৃষকগণ:</h3>
+            <h3 className="text-2xl font-bold text-gray-700 dark:text-green-400 mb-4">Farmers:</h3>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              সঠিক ফসল নির্বাচন এবং উন্নত চাষাবাদের কৌশল সম্পর্কে পরামর্শ পান। মাটি এবং আবহাওয়া অনুযায়ী
-              নির্ভুল কৃষি তথ্য এবং এআই চ্যাটবটের মাধ্যমে কৃষি সমস্যার সমাধান।
+              Get advice on optimal crop selection and advanced farming techniques. Access accurate agricultural data based on soil and weather, and solve farming problems via AI chatbot.
             </p>
 
-            <h3 className="text-2xl font-bold text-gray-700 dark:text-green-400 mb-4">কৃষি পরামর্শদাতা:</h3>
+            <h3 className="text-2xl font-bold text-gray-700 dark:text-green-400 mb-4">Agricultural Advisors:</h3>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              কৃষকদের সহায়তার জন্য বৈজ্ঞানিক তথ্য এবং সুপারিশ প্রদান। উন্নত প্রযুক্তি ব্যবহার করে কৃষি
-              পরিকল্পনার উন্নতি।
+              Provide scientific information and recommendations to support farmers. Improve planning using advanced technologies.
             </p>
 
-            <h3 className="text-2xl font-bold text-gray-700 dark:text-green-400 mb-4">উদ্যোক্তাগণ:</h3>
+            <h3 className="text-2xl font-bold text-gray-700 dark:text-green-400 mb-4">Entrepreneurs:</h3>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              আধুনিক কৃষি প্রযুক্তি ও তথ্য ব্যবহার করে কৃষি উৎপাদনের মান বৃদ্ধি এবং কৃষকদের সাথে সরাসরি
-              যোগাযোগ স্থাপনের সুযোগ।
+              Enhance agricultural production quality using modern agri-tech and establish direct communication with farmers.
             </p>
 
-            <h3 className="text-2xl font-bold text-gray-700 dark:text-green-400 mb-4">গ্রামীণ অর্থনীতি:</h3>
+            <h3 className="text-2xl font-bold text-gray-700 dark:text-green-400 mb-4">Rural Economy:</h3>
             <p className="text-gray-600 dark:text-gray-300">
-              প্রযুক্তির প্রয়োগের মাধ্যমে উৎপাদনশীলতা বৃদ্ধি এবং গ্রামীণ অর্থনীতির কাঠামোকে শক্তিশালী
-              করা।
+              Strengthen the structure of rural economies by increasing productivity through technology adoption.
             </p>
           </div>
 
@@ -95,8 +91,7 @@ const Benefits = () => {
         {/* Benefits Footer */}
         <div className="mt-12 text-center">
           <p className="text-gray-700 dark:text-gray-300 text-lg">
-            কৃষিদিশারি কৃষকদের উন্নত ফসল ফলানোর সুযোগ দেয় এবং কৃষি খাতে একটি টেকসই ভবিষ্যত গড়ে তুলতে
-            সাহায্য করে।
+            Krishidishari empowers farmers to grow better crops and contributes to building a sustainable future in agriculture.
           </p>
         </div>
       </div>

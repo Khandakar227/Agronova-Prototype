@@ -15,8 +15,7 @@ const ChatComponent = () => {
       console.log("Opening chatbot...");
       setIsOpen(e.detail?.open || false);
     });
-    
-  }, [])
+  }, []);
 
   const toggleChat = () => {
     setIsOpen(!isOpen);
@@ -25,17 +24,15 @@ const ChatComponent = () => {
   const handleSend = async () => {
     if (!input) return;
 
-    // Add user's input to messages
     const newMessages = [...messages, { user: input, bot: "..." }];
     setMessages(newMessages);
     setLoading(true);
 
     try {
-      // Call the backend API
       const response = await fetch("/api/chatbot", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: input }), // Sending the crop name as input
+        body: JSON.stringify({ question: input }),
       });
 
       const data = await response.json();
@@ -51,7 +48,7 @@ const ChatComponent = () => {
           ...newMessages.slice(0, -1),
           {
             user: input,
-            bot: "দুঃখিত, সিস্টেমের সমস্যা হয়েছে। পরে আবার চেষ্টা করুন।",
+            bot: "Sorry, there was a system error. Please try again later.",
           },
         ]);
       }
@@ -61,7 +58,7 @@ const ChatComponent = () => {
         ...newMessages.slice(0, -1),
         {
           user: input,
-          bot: "দুঃখিত, সার্ভারের সাথে সংযোগ স্থাপন করতে পারছি না।",
+          bot: "Sorry, unable to connect to the server.",
         },
       ]);
     } finally {
@@ -70,7 +67,6 @@ const ChatComponent = () => {
     }
   };
 
- 
   return (
     <>
       {/* Chat Toggle Button */}
@@ -90,46 +86,43 @@ const ChatComponent = () => {
         <div className="fixed bottom-20 resize-y max-h-[80vh] right-6 bg-white shadow-lg rounded-lg w-80 z-50">
           {/* Header */}
           <div className="p-4 bg-green-600 dark:bg-green-700 text-white rounded-t-lg">
-            <h3 className="text-lg font-bold">কৃষিমিত্র</h3>
+            <h3 className="text-lg font-bold">KrishiMitro</h3>
             <p className="text-xs">
-              স্বাগতম! আমি কৃষিমিত্র, আপনার কৃষি সহায়ক চ্যাটবট।
+              Welcome! I am KrishiMitro, your agricultural assistant chatbot.
             </p>
           </div>
 
           {/* Messages Section */}
           <div className="h-72 overflow-y-auto p-4">
             <div className="text-xs text-gray-500">
-              <p>🌾আমি কীভাবে আপনাকে সাহায্য করতে পারি?</p>
+              <p>🌾How can I help you today?</p>
               <br />
               <ul className="list-inside list-disc">
-                <li>আপনার জমির জন্য সেরা ফসল কী?</li>
-                <li>ফসলের রোগ নির্ণয় ও প্রতিকার।</li>
-                <li>সার, বীজ, এবং কৃষি উপকরণ ব্যবহারের সঠিক পদ্ধতি।</li>
-                <li>আবহাওয়া ও জলবায়ু তথ্য।</li>
-                <li>সর্বাধুনিক কৃষি প্রযুক্তি ও টিপস।</li>
+                <li>Which crop is best for your land?</li>
+                <li>Diagnosis and treatment of crop diseases.</li>
+                <li>Proper usage methods of fertilizers, seeds, and agri-inputs.</li>
+                <li>Weather and climate information.</li>
+                <li>Latest agricultural technologies and tips.</li>
                 <li>
-                  আমাকে আপনার প্রশ্ন করুন, আর আমি আপনাকে সঠিক ও প্রাসঙ্গিক উত্তর
-                  দিতে চেষ্টা করব। কৃষির উন্নয়নই আমাদের লক্ষ্য! 🌱"
+                  Ask me your questions, and I will try to give you accurate and relevant answers. Our goal is agricultural development! 🌱
                 </li>
               </ul>
-            <br />
-              <p>যেকোনো সাহায্যের জন্য কথা বলুন কৃষিমিত্রের সাথে। 😊</p>
+              <br />
+              <p>Chat with KrishiMitro for any help you need. 😊</p>
             </div>
             {messages.map((msg, idx) => (
               <div key={idx} className="mb-2">
-                  {/* Display user message */}
-                  <p className="text-orange-600 text-end font-semibold text-sm pt-4">আপনি:</p>
-                  <div className="p-1 bg-orange-50 text-gray-800 rounded shadow ml-4 text-sm">{msg.user}</div>
-                  {/* Display bot message */}
-                <p className="text-green-500 text-sm font-semibold pt-4">কৃষিমিত্র:</p>
+                <p className="text-orange-600 text-end font-semibold text-sm pt-4">You:</p>
+                <div className="p-1 bg-orange-50 text-gray-800 rounded shadow ml-4 text-sm">{msg.user}</div>
+                <p className="text-green-500 text-sm font-semibold pt-4">KrishiMitro:</p>
                 <div data-color-mode="light" className="p-1 bg-green-50 rounded shadow mr-4">
-                  <MarkdownPreview style={{backgroundColor: "transparent", fontSize: "12px"}} source={msg.bot} />
+                  <MarkdownPreview style={{ backgroundColor: "transparent", fontSize: "12px" }} source={msg.bot} />
                 </div>
               </div>
             ))}
             {loading && (
               <div className="text-sm text-gray-700">
-                কৃষিমিত্র: লেখার জন্য অপেক্ষা করুন...
+                KrishiMitro: Please wait while I'm typing...
               </div>
             )}
           </div>
@@ -140,15 +133,14 @@ const ChatComponent = () => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="আপনার বার্তা লিখুন..."
+              placeholder="Type your message..."
               className="flex-grow resize-y dark:text-black outline-none px-2 py-1 rounded-md border"
               disabled={loading}
             />
             <button
               onClick={handleSend}
-              className={`bg-green-500 text-white px-4 py-1 rounded ml-2 ${
-                loading ? "opacity-50 cursor-not-allowed" : ""
-              }`}
+              className={`bg-green-500 text-white px-4 py-1 rounded ml-2 ${loading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
               disabled={loading}
             >
               <Send className="w-5 h-5" />

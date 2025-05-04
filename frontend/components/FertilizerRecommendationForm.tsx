@@ -1,4 +1,5 @@
 "use client";
+
 import { fertilizersCrops, fertilizersSoilType, serverUrl } from "@/libs/const";
 import { getFertilizerInfo } from "@/libs/gemini";
 import {
@@ -15,7 +16,7 @@ import Spinner from "./common/Spinner";
 import { useRouter } from "next/navigation";
 
 export default function FertilizerRecommendationForm() {
-    const router = useRouter();
+  const router = useRouter();
 
   const [loading, setLoading] = useState(false);
   const [fertilizer, setFertilizer] = useState<string>("");
@@ -65,14 +66,14 @@ export default function FertilizerRecommendationForm() {
     <div className="p-4">
       <form
         action="POST"
-        className="mx-auto max-w-2xl px-4 py-12 rounded-md bg-green-200 shadow-md shadow-green-700  shadow-green-800 dark:bg-dark dark:shadow-lg dark:shadow-green-600 "
+        className="mx-auto max-w-2xl px-4 py-12 rounded-md bg-green-200 shadow-md shadow-green-700 dark:bg-dark dark:shadow-lg dark:shadow-green-600 "
         onSubmit={onSubmit}
       >
         <div className="w-full">
           <label htmlFor="crop" className="flex gap-1 items-center">
             <LeafIcon size={15} />{" "}
             <p>
-              ফসল<span className="text-red-500">*</span>
+              Crop<span className="text-red-500">*</span>
             </p>
           </label>
           <select
@@ -81,7 +82,7 @@ export default function FertilizerRecommendationForm() {
             required
             className="mb-2 block w-full rounded-md border shadow-sm dark:text-gray-800 focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
           >
-            <option value=""> সিলেক্ট করুন </option>
+            <option value=""> Select </option>
             {Object.keys(fertilizersCrops).map((crop) => (
               <option key={crop} value={crop}>
                 {fertilizersCrops[crop as keyof typeof fertilizersCrops]}
@@ -93,7 +94,7 @@ export default function FertilizerRecommendationForm() {
           <label htmlFor="soilType" className="flex gap-1 items-center ">
             <Droplet size={15} />
             <p>
-              মাটির ধরণ<span className="text-red-500">*</span>
+              Soil Type<span className="text-red-500">*</span>
             </p>
           </label>
           <select
@@ -101,12 +102,12 @@ export default function FertilizerRecommendationForm() {
             id="soilType"
             className="mb-2 block w-full rounded-md border dark:text-gray-800 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
           >
-            <option value=""> সিলেক্ট করুন </option>
+            <option value=""> Select </option>
             {Object.keys(fertilizersSoilType).map((soilType) => (
               <option key={soilType} value={soilType}>
                 {
                   fertilizersSoilType[
-                    soilType as keyof typeof fertilizersSoilType
+                  soilType as keyof typeof fertilizersSoilType
                   ]
                 }
               </option>
@@ -117,13 +118,13 @@ export default function FertilizerRecommendationForm() {
         <div className="flex flex-wrap gap-4 pt-4">
           <div>
             <label htmlFor="n" className="flex gap-1 items-center">
-              নাইট্রোজেন (N)<span className="text-red-500">*</span>
+              Nitrogen (N)<span className="text-red-500">*</span>
             </label>
             <input
               type="number"
               name="N"
               id="n"
-              placeholder="কেজি/হেক্টর"
+              placeholder="kg/hectare"
               required
               className="mb-2 block w-full rounded-md border dark:text-gray-800 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
             />
@@ -131,13 +132,13 @@ export default function FertilizerRecommendationForm() {
 
           <div>
             <label htmlFor="p" className="flex gap-1 items-center">
-              ফসফরাস (P)<span className="text-red-500">*</span>
+              Phosphorus (P)<span className="text-red-500">*</span>
             </label>
             <input
               type="number"
               name="P"
               id="p"
-              placeholder="কেজি/হেক্টর"
+              placeholder="kg/hectare"
               required
               className="mb-2 block w-full rounded-md border dark:text-gray-800 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
             />
@@ -145,13 +146,13 @@ export default function FertilizerRecommendationForm() {
 
           <div>
             <label htmlFor="k" className="flex gap-1 items-center">
-              পটাশিয়াম (K)<span className="text-red-500">*</span>
+              Potassium (K)<span className="text-red-500">*</span>
             </label>
             <input
               type="number"
               name="K"
               id="k"
-              placeholder="কেজি/হেক্টর"
+              placeholder="kg/hectare"
               required
               className="mb-2 block w-full rounded-md border dark:text-gray-800 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm p-2"
             />
@@ -160,7 +161,7 @@ export default function FertilizerRecommendationForm() {
 
         <div className="w-full">
           <label htmlFor="temp" className="flex gap-1 items-center">
-            <ThermometerIcon size={15} /> তাপমাত্রা (°C)
+            <ThermometerIcon size={15} /> Temperature (°C)
           </label>
           <input
             type="number"
@@ -174,7 +175,7 @@ export default function FertilizerRecommendationForm() {
 
         <div className="w-full">
           <label htmlFor="moisture" className="flex gap-1 items-center">
-            <Droplets size={15} /> মাটির আর্দ্রতা (%)
+            <Droplets size={15} /> Soil Moisture (%)
           </label>
           <input
             type="number"
@@ -189,7 +190,7 @@ export default function FertilizerRecommendationForm() {
 
         <div className="w-full">
           <label htmlFor="humidity" className="flex gap-1 items-center">
-            <Wind size={15} /> বায়ুর আর্দ্রতা (%)
+            <Wind size={15} /> Air Humidity (%)
           </label>
           <input
             type="number"
@@ -208,28 +209,28 @@ export default function FertilizerRecommendationForm() {
             className="bg-green-500 text-white p-2 rounded w-full max-w-lg"
             disabled={loading}
           >
-            {loading ? "অপেক্ষা করুন" : "প্রেরণ করুন"}
+            {loading ? "Please wait" : "Submit"}
           </button>
         </div>
       </form>
 
       {fertilizer ? (
         <div className="mx-auto max-w-2xl px-4 pb-8 pt-24 m-4 rounded shadow bg-lime-50">
-        <div id="recommended-result">
+          <div id="recommended-result">
             <h2 className="text-center text-xl dark:text-gray-800">
-                প্রস্তাবিত সার
+              Recommended Fertilizer
             </h2>
             <div className="text-center text-2xl font-bold mt-4 dark:text-gray-800">{fertilizer}</div>
             {description ? (
-            <div className="pt-8">
+              <div className="pt-8">
                 <div data-color-mode="light">
-                    <MarkdownPreview source={description} style={{backgroundColor: "transparent"}}/>
+                  <MarkdownPreview source={description} style={{ backgroundColor: "transparent" }} />
                 </div>
-            </div>
+              </div>
             )
-            : <Spinner/>
+              : <Spinner />
             }
-        </div>
+          </div>
         </div>
       ) : (
         <div className="py-8 text-center mx-auto flex justify-center items-center">
