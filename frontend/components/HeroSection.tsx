@@ -24,7 +24,7 @@ export default function HeroSection() {
         <h1 className="text-2xl font-bold py-4">Smart Solutions for Farmers</h1>
         <p className="text-5xl font-bold py-4">A New Direction for Success in Agriculture!</p>
         <p className="text-xl py-4 max-w-2xl">
-          KrishiDishari is your trusted companion, ready to make farming easier and more profitable with the help of modern technology.
+          Agronova is your trusted companion, ready to make farming easier and more profitable with the help of modern technology.
         </p>
         <div className="mx-auto text-center pt-10">
           <ChevronsDown size={28} className="animate-bounce" />

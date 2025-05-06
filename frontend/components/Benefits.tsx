@@ -19,10 +19,10 @@ const Benefits = () => {
         {/* Title Section */}
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 dark:text-white mb-4">
-            Primary Users and Beneficiaries of Krishidishari
+            Primary Users and Beneficiaries of Agronova
           </h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed mx-auto max-w-3xl">
-            Krishidishari is a modern technology-based platform designed especially for farmers.
+            Agronova is a modern technology-based platform designed especially for farmers.
             Here’s a list of its main users and beneficiaries.
           </p>
         </div>
@@ -91,7 +91,7 @@ const Benefits = () => {
         {/* Benefits Footer */}
         <div className="mt-12 text-center">
           <p className="text-gray-700 dark:text-gray-300 text-lg">
-            Krishidishari empowers farmers to grow better crops and contributes to building a sustainable future in agriculture.
+            Agronova empowers farmers to grow better crops and contributes to building a sustainable future in agriculture.
           </p>
         </div>
       </div>

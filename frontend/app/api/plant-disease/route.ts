@@ -20,7 +20,7 @@ Disease description
 Remedy
 Prevention
 
-Mention from the perspective of Bangladesh. Respond in Bengali.
+Mention from the perspective of Bangladesh.
 `;
         const response = await getGroqChatCompletion([{ role: "user", content: prompt }]);
         // const json = JSON.parse(response.replaceAll("```json", "").replace("```", ""))
